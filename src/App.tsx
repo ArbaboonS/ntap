@@ -14,9 +14,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchTelegramUsername = async () => {
-      const token = process.env.TELEGRAM_BOT_TOKEN;
+      const token = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
       if (!token) {
-        console.error('TELEGRAM_BOT_TOKEN environment variable is missing');
+        console.error('VITE_TELEGRAM_BOT_TOKEN environment variable is missing');
         setTelegramUsername('Error fetching username');
         return;
       }
