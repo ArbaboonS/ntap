@@ -9,7 +9,6 @@ import Friends from './icons/Friends';
 import Coins from './icons/Coins';
 import TelegramBot from 'node-telegram-bot-api';
 
-
 const App: React.FC = () => {
   const [telegramUsername, setTelegramUsername] = useState('Loading...');
 
@@ -166,7 +165,7 @@ const App: React.FC = () => {
               <Hamster size={24} className="text-[#d4d4d4]" />
             </div>
             <div>
-              <p className="text-sm">Nikandr (CEO)</p>
+              <p className="text-sm">{telegramUsername}</p>
             </div>
           </div>
           <div className="flex items-center justify-between space-x-4 mt-1">
