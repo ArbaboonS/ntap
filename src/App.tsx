@@ -7,8 +7,35 @@ import Settings from './icons/Settings';
 import Mine from './icons/Mine';
 import Friends from './icons/Friends';
 import Coins from './icons/Coins';
+import TelegramBot from 'node-telegram-bot-api';
+
 
 const App: React.FC = () => {
+  const [telegramUsername, setTelegramUsername] = useState('Loading...');
+
+  useEffect(() => {
+    const fetchTelegramUsername = async () => {
+      const token = process.env.TELEGRAM_BOT_TOKEN;
+      if (!token) {
+        console.error('TELEGRAM_BOT_TOKEN environment variable is missing');
+        setTelegramUsername('Error fetching username');
+        return;
+      }
+
+      const bot = new TelegramBot(token);
+
+      try {
+        const me = await bot.getMe();
+        setTelegramUsername(me.username || 'Unknown');
+      } catch (error) {
+        console.error('Error fetching Telegram username:', error);
+        setTelegramUsername('Error fetching username');
+      }
+    };
+
+    fetchTelegramUsername();
+  }, []);
+  
   const levelNames = [
     "Bronze",    // From 0 to 4999 coins
     "Silver",    // From 5000 coins to 24,999 coins
